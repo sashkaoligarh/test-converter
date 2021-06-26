@@ -4,7 +4,7 @@ import Component from './Main'
 
 
 const mapStateToProps = (state) => ({ 
-
+  fetchLoading: state.currencies.fetchLoading
 })
 
 const mapDispatchToProps = (dispatch) => ({

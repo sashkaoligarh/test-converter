@@ -1,16 +1,27 @@
 import axios from 'axios'
+import { API_URL, API_KEY } from '../Configs/api-config'
+
 
 const api = axios.create({
-  baseURL: `${devConfig.BASE_API_URL}api/`,
+  baseURL: `${API_URL}/`,
   headers: {
-    Authorization: `Bearer ${getToken()}`,
-    Accept: 'application/json',
     'Content-Type': 'application/json',
+    "x-rapidapi-key": `${API_KEY}`,
+    "x-rapidapi-host": "fixer-fixer-currency-v1.p.rapidapi.com",
+    "useQueryString": true
   },
 })
 
 
-export const NewApi = {
-
+export const Api = {
+  getAllCurrencies(){
+    return api.get(`symbols`)
+  },
+  convert(data){
+    return api.get(`convert`, {data})
+  },
+  convertToAll(data){
+    return api.get(`latest`, {data})
+  }
 
 }
