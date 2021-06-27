@@ -22,6 +22,7 @@
     "react-scripts": "4.0.3",
     "react-topbar-progress-indicator": "^4.1.0",
     "redux": "^4.1.0",
+    "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
     "styled-components": "^5.3.0",
     "unirest": "^0.6.0",
@@ -50,8 +51,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "redux-logger": "^3.0.6"
   }
 }
