@@ -6,9 +6,11 @@ const initialState = {
   alltargetCurrencies:[],
   convertResult:'',
   errConvert:'',
-  fetchLoading:false,
+  fetchLoading:true,
   convertLoading:false,
   errFetchCurrencies:'',
+  rates:[],
+  base:'',
 }
 
 const currencies = createSlice({
@@ -16,7 +18,9 @@ const currencies = createSlice({
 	initialState,
 	reducers: {
 		setAllCurrencies:(state, action) => {
-      state.allCurrencies = action.payload
+      Object.keys(action.payload).forEach(e => {
+        state.allCurrencies.push({value:e, label:action.payload[e], key:Math.random()})
+      })
     },
     setLoading:(state, action) => {
       state.fetchLoading = action.payload
@@ -33,6 +37,18 @@ const currencies = createSlice({
     setErrConvert:(state, action) => {
       state.errConvert = action.payload
     },
+    setRates:(state, action) => {
+      Object.keys(action.payload?.rates).forEach(e => {
+        state.rates.push({value:e, label:action.payload?.rates[e], key:Math.random()})
+      })
+      state.base = action.payload.base
+    },
+    clearCurrencies:(state) => {
+      state.allCurrencies = []
+    },
+    clearRates:(state) => {
+      state.rates = []
+    },
 	}
 })
 
@@ -43,11 +59,15 @@ const {
   setErr,
   setConvertLoading,
   setConvertResult,
-  setErrConvert
+  setErrConvert,
+  setRates,
+  clearCurrencies,
+  clearRates,
 } = actions;
 export default reducer
 
 export const SaveAllCurrencies = (dispatch) => {
+  dispatch(clearCurrencies())
   dispatch(setLoading(true))
   Api.getAllCurrencies()
   .then(async (res) => {
@@ -69,6 +89,20 @@ export const Convert = (data, dispatch) => {
   })
   .catch(async (e) => {
     await dispatch(setErrConvert(e.response.data))
+    await dispatch(setConvertLoading(false))
+  })
+}
+
+export const Rates = (data, dispatch) => {
+  dispatch(clearRates())
+  dispatch(setConvertLoading(true))
+  Api.convertToAll(data)
+  .then(async (res) => {
+    await dispatch(setRates(res?.data))
+    await dispatch(setConvertLoading(false))
+  })
+  .catch(async (e) => {
+    await dispatch(setErrConvert(e?.response?.data))
     await dispatch(setConvertLoading(false))
   })
 }

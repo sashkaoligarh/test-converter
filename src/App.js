@@ -1,14 +1,16 @@
-import React, { useEffect } from 'react';
-import AppRouter from './Routes';
+import React from 'react'
+import AppRouter from './Routes'
+import Header from './Components/Header'
 
-class App extends React.PureComponent  {
+class App extends React.PureComponent {
   render(){
     return (
-      <div className="App">
+      <>
+        <Header/>
         <AppRouter/>
-      </div>
+      </>
     );
   }
 }
 
-export default App;
+export default App

@@ -10,31 +10,24 @@ import { createGlobalStyle } from 'styled-components'
 require('dotenv').config()
 
 const GlobalStyles = createGlobalStyle`
-html{
-  width: 100%;
-  min-height:100%;
-  position: relative;
-}
-body{
-  display:block;
-  width: 100%;
-  min-height:100%;
-  color:#ffff;
-  position:absolute;
-  background-size:cover;
-  background-attachment:fixed;
-}
+  html{
+    width: 100%;
+    min-height:100%;
+  }
+  body{
+    width: 100%;
+    min-height:100%;
+  }
 `
-
 ReactDOM.render(
   <>
-  <Provider store={store}>
-    <ConnectedRouter history={history}>
-      <GlobalStyles/>
-      <App />
-    </ConnectedRouter>
-  </Provider>
-</>,
+    <Provider store={store}>
+      <ConnectedRouter history={history}>
+        <GlobalStyles/>
+        <App />
+      </ConnectedRouter>
+    </Provider>
+  </>,
   document.getElementById('root')
 );
 

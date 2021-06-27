@@ -18,10 +18,10 @@ export const Api = {
     return api.get(`symbols`)
   },
   convert(data){
-    return api.get(`convert`, {data})
+    return api.get(`convert?from=${data.from}&to=${data.to}&amount=${data.amount}`)
   },
   convertToAll(data){
-    return api.get(`latest`, {data})
+    return api.get(`latest?base=${data.from}`)
   }
 
 }

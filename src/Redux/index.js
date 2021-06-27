@@ -3,7 +3,6 @@ import { createBrowserHistory } from 'history'
 // middlewares
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
-
 import rootReducer from './reducers'
 
 export const history = createBrowserHistory()
